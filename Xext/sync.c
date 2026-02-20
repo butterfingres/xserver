@@ -87,7 +87,7 @@ static RESTYPE RTAwait;
 static RESTYPE RTAlarm;
 static RESTYPE RTAlarmClient;
 static RESTYPE RTFence;
-static struct xorg_list SysCounterList;
+static struct xorg_list SysCounterList = { 0 };
 static int SyncNumInvalidCounterWarnings = 0;
 
 #define MAX_INVALID_COUNTER_WARNINGS	   5
@@ -2194,7 +2194,6 @@ SyncExtensionInit(void)
     });
 
     RTCounter = CreateNewResourceType(FreeCounter, "SyncCounter");
-    xorg_list_init(&SysCounterList);
     RTAlarm = CreateNewResourceType(FreeAlarm, "SyncAlarm");
     RTAwait = CreateNewResourceType(FreeAwait, "SyncAwait");
     RTFence = CreateNewResourceType(FreeFence, "SyncFence");

@@ -104,7 +104,6 @@ ms_get_resource(XID id, RESTYPE type)
 
     resource->id = id;
     resource->type = type;
-    xorg_list_init(&resource->list);
     return resource;
 }
 

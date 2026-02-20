@@ -104,12 +104,7 @@ typedef struct {
     char **paths;
 } LoaderModulePathListItem;
 
-struct xorg_list modulePathLists;
-
-void LoaderInitPath(void) {
-    /* defaultPathList is already set in xf86Init */
-    xorg_list_init(&modulePathLists);
-}
+struct xorg_list modulePathLists = { 0 };
 
 void LoaderClosePath(void) {
     LoaderModulePathListItem *item, *next;

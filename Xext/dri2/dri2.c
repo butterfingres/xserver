@@ -246,7 +246,6 @@ DRI2AllocateDrawable(DrawablePtr pDraw)
     pPriv->swap_limit = 1;      /* default to double buffering */
     pPriv->last_swap_msc = 0;
     pPriv->last_swap_ust = 0;
-    xorg_list_init(&pPriv->reference_list);
     pPriv->needInvalidate = FALSE;
     pPriv->redirectpixmap = NULL;
     pPriv->prime_secondary_pixmap = NULL;

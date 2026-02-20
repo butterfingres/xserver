@@ -43,8 +43,6 @@ present_get_window_priv(WindowPtr window, Bool create)
     window_priv = calloc (1, sizeof (present_window_priv_rec));
     if (!window_priv)
         return NULL;
-    xorg_list_init(&window_priv->vblank);
-    xorg_list_init(&window_priv->notifies);
 
     window_priv->window = window;
     window_priv->crtc = PresentCrtcNeverSet;
@@ -252,9 +250,6 @@ present_extension_init(void)
         goto bail;
 
     present_request = extension->base;
-
-    if (!present_init())
-        goto bail;
 
     if (!present_event_init())
         goto bail;

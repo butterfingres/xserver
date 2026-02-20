@@ -39,8 +39,6 @@ Bool xnest_upstream_setup(const char* displayName)
         xcb_screen_next (&iter);
     xnestUpstreamInfo.screenInfo = iter.data;
 
-    xorg_list_init(&xnestUpstreamInfo.eventQueue.entry);
-
     return TRUE;
 }
 

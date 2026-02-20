@@ -265,17 +265,9 @@ long SmartLastPrint;
 
 void Dispatch(void);
 
-static struct xorg_list ready_clients;
-static struct xorg_list saved_ready_clients;
-struct xorg_list output_pending_clients;
-
-static void
-init_client_ready(void)
-{
-    xorg_list_init(&ready_clients);
-    xorg_list_init(&saved_ready_clients);
-    xorg_list_init(&output_pending_clients);
-}
+static struct xorg_list ready_clients = { 0 };
+static struct xorg_list saved_ready_clients = { 0 };
+struct xorg_list output_pending_clients = { 0 };
 
 Bool
 clients_are_ready(void)
@@ -486,7 +478,6 @@ Dispatch(void)
     nClients = 0;
 
     SmartScheduleSlice = SmartScheduleInterval;
-    init_client_ready();
 
     while (!dispatchException) {
         if (InputCheckPending()) {

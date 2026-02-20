@@ -1217,7 +1217,6 @@ EnqueueEvent(InternalEvent *ev, DeviceIntPtr device)
     QdEventPtr qe = calloc(1, sizeof(QdEventRec) + eventlen);
     if (!qe)
         return;
-    xorg_list_init(&qe->next);
     qe->device = device;
     qe->pScreen = pSprite->hotPhys.pScreen;
     qe->months = currentTime.months;

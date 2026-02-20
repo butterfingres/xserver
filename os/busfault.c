@@ -48,7 +48,7 @@ struct busfault {
 };
 
 static Bool             busfaulted;
-static struct xorg_list busfaults;
+static struct xorg_list busfaults = { 0 };
 
 struct busfault *
 busfault_register_mmap(void *addr, size_t size, busfault_notify_ptr notify, void *context)
@@ -147,6 +147,5 @@ busfault_init(void)
     if (sigaction(SIGBUS, &act, &old_act) < 0)
         return FALSE;
     previous_busfault_sigaction = old_act.sa_sigaction;
-    xorg_list_init(&busfaults);
     return TRUE;
 }
