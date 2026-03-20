@@ -40,7 +40,6 @@ ht_create(int             keySize,
           HashCompareFunc compare,
           void            *cdata)
 {
-    int c;
     int numBuckets;
     HashTable ht = calloc(1, sizeof(struct HashTableRec));
 
@@ -59,9 +58,6 @@ ht_create(int             keySize,
     ht->cdata = cdata;
 
     if (ht->buckets) {
-        for (c = 0; c < numBuckets; ++c) {
-            xorg_list_init(&ht->buckets[c]);
-        }
         return ht;
     } else {
         free(ht);
@@ -98,10 +94,6 @@ double_size(HashTable ht)
 
     newBuckets = calloc(newNumBuckets, sizeof(*ht->buckets));
     if (newBuckets) {
-        for (c = 0; c < newNumBuckets; ++c) {
-            xorg_list_init(&newBuckets[c]);
-        }
-
         for (c = 0; c < numBuckets; ++c) {
             BucketPtr it, tmp;
             xorg_list_for_each_entry_safe(it, tmp, &ht->buckets[c], l) {

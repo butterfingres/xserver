@@ -108,7 +108,7 @@ struct _OsTimerRec {
 
 static void DoTimer(OsTimerPtr timer, CARD32 now);
 static void CheckAllTimers(void);
-static volatile struct xorg_list timers;
+static volatile struct xorg_list timers = { 0 };
 
 static inline OsTimerPtr
 first_timer(void)
@@ -301,7 +301,6 @@ TimerSet(OsTimerPtr timer, int flags, CARD32 millis,
         timer = calloc(1, sizeof(struct _OsTimerRec));
         if (!timer)
             return NULL;
-        xorg_list_init(&timer->list);
     }
     else {
         input_lock();
@@ -376,13 +375,7 @@ TimerFree(OsTimerPtr timer)
 void
 TimerInit(void)
 {
-    static Bool been_here;
     OsTimerPtr timer, tmp;
-
-    if (!been_here) {
-        been_here = TRUE;
-        xorg_list_init((struct xorg_list*) &timers);
-    }
 
     xorg_list_for_each_entry_safe(timer, tmp, &timers, list) {
         xorg_list_del(&timer->list);

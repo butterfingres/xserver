@@ -38,8 +38,8 @@
 
 static uint64_t present_scmd_event_id;
 
-static struct xorg_list present_exec_queue;
-static struct xorg_list present_flip_queue;
+static struct xorg_list present_exec_queue = { 0 };
+static struct xorg_list present_flip_queue = { 0 };
 
 static void
 present_execute(present_vblank_ptr vblank, uint64_t ust, uint64_t crtc_msc);
@@ -936,13 +936,4 @@ present_scmd_init_mode_hooks(present_screen_priv_ptr screen_priv)
 
     screen_priv->abort_vblank       =   &present_scmd_abort_vblank;
     screen_priv->flip_destroy       =   &present_scmd_flip_destroy;
-}
-
-Bool
-present_init(void)
-{
-    xorg_list_init(&present_exec_queue);
-    xorg_list_init(&present_flip_queue);
-    present_fake_queue_init();
-    return TRUE;
 }

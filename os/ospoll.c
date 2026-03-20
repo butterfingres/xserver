@@ -224,7 +224,6 @@ ospoll_create(void)
         free (ospoll);
         return NULL;
     }
-    xorg_list_init(&ospoll->deleted);
     return ospoll;
 #endif
 #if EPOLL
@@ -236,7 +235,6 @@ ospoll_create(void)
         free (ospoll);
         return NULL;
     }
-    xorg_list_init(&ospoll->deleted);
     return ospoll;
 #endif
 #if POLL

@@ -1921,7 +1921,7 @@ fs_fd_handler(int fd, int ready, void *data)
     entry->handler(fd, entry->data);
 }
 
-static struct xorg_list fs_fd_list;
+static struct xorg_list fs_fd_list = { 0 };
 
 static int
 add_fs_fd(int fd, FontFdHandlerProcPtr handler, void *data)
@@ -1975,7 +1975,6 @@ _init_fs_handlers(FontPathElementPtr fpe, FontBlockHandlerProcPtr block_handler)
         if (!RegisterBlockAndWakeupHandlers(fs_block_handler,
                                             FontWakeup, block_handler))
             return AllocError;
-        xorg_list_init(&fs_fd_list);
         fs_handlers_installed++;
     }
     QueueFontWakeup(fpe);

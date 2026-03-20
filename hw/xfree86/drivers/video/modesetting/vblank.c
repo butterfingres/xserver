@@ -46,7 +46,7 @@
  * regen time, even though we don't close the drm fd and have no way
  * to actually drain the kernel events.
  */
-static struct xorg_list ms_drm_queue;
+static struct xorg_list ms_drm_queue = { 0 };
 static uint32_t ms_drm_seq;
 
 static void box_intersect(BoxPtr dest, BoxPtr a, BoxPtr b)
@@ -654,7 +654,6 @@ ms_vblank_screen_init(ScreenPtr screen)
     ScrnInfoPtr scrn = xf86ScreenToScrn(screen);
     modesettingPtr ms = modesettingPTR(scrn);
     modesettingEntPtr ms_ent = ms_ent_priv(scrn);
-    xorg_list_init(&ms_drm_queue);
 
     ms->event_context.version = 4;
     ms->event_context.vblank_handler = ms_drm_handler;

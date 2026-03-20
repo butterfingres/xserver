@@ -379,9 +379,6 @@ present_fake_abort_vblank(ScreenPtr screen, uint64_t event_id, uint64_t msc);
 void
 present_fake_screen_init(ScreenPtr screen);
 
-void
-present_fake_queue_init(void);
-
 /*
  * present_fence.c
  */
@@ -453,9 +450,6 @@ present_restore_screen_pixmap(ScreenPtr screen);
 
 void
 present_set_abort_flip(ScreenPtr screen);
-
-Bool
-present_init(void);
 
 void
 present_scmd_init_mode_hooks(present_screen_priv_ptr screen_priv);

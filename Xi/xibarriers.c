@@ -115,7 +115,6 @@ static struct PointerBarrierDevice *AllocBarrierDevice(void)
     pbd->release_event_id = 0;
     pbd->hit = FALSE;
     pbd->seen = FALSE;
-    xorg_list_init(&pbd->entry);
 
     return pbd;
 }
@@ -569,8 +568,6 @@ CreatePointerBarrierClient(ClientPtr client,
         return BadAlloc;
     }
 
-    xorg_list_init(&ret->per_device);
-
     err = dixLookupWindow(&pWin, stuff->window, client, DixReadAccess);
     if (err != Success) {
         client->errorValue = stuff->window;
@@ -609,7 +606,6 @@ CreatePointerBarrierClient(ClientPtr client,
     }
 
     /* Alloc one per master pointer, they're the ones that can be blocked */
-    xorg_list_init(&ret->per_device);
     nt_list_for_each_entry(dev, inputInfo.devices, next) {
         struct PointerBarrierDevice *pbd;
 
@@ -926,7 +922,6 @@ XIBarrierInit(void)
         cs = (BarrierScreenPtr) calloc(1, sizeof(BarrierScreenRec));
         if (!cs)
             return FALSE;
-        xorg_list_init(&cs->barriers);
         SetBarrierScreen(walkScreen, cs);
     });
 

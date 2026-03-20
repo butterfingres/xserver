@@ -343,8 +343,6 @@ RRScreenInit(ScreenPtr pScreen)
     pScreen->ConstrainCursorHarder = RRConstrainCursorHarder;
     pScreen->ReplaceScanoutPixmap = RRReplaceScanoutPixmap;
 
-    xorg_list_init(&pScrPriv->leases);
-
     RRMonitorInit(pScreen);
 
     RRNScreens += 1;            /* keep count of screens that implement randr */

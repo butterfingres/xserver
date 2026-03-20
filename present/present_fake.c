@@ -24,7 +24,7 @@
 #include "include/list.h"
 #include "present/present_priv.h"
 
-static struct xorg_list fake_vblank_queue;
+static struct xorg_list fake_vblank_queue = { 0 };
 
 typedef struct present_fake_vblank {
     struct xorg_list            list;
@@ -137,10 +137,4 @@ present_fake_screen_init(ScreenPtr screen)
             fake_fps = 60;
     }
     screen_priv->fake_interval = 1000000 / fake_fps;
-}
-
-void
-present_fake_queue_init(void)
-{
-    xorg_list_init(&fake_vblank_queue);
 }

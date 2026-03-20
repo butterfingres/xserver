@@ -73,7 +73,6 @@ ModuleDescPtr DuplicateModule(ModuleDescPtr mod, ModuleDescPtr parent);
 void UnloadDriver(ModuleDescPtr);
 
 void LoaderSetPath(const char *driver, const char *path);
-void LoaderInitPath(void);
 void LoaderClosePath(void);
 
 void LoaderUnload(const char *, void *);
