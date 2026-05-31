@@ -377,7 +377,7 @@ jobs:
               with:
                   envs: 'MESON_ARGS'
                   usesh: true
-                  release: "9.4"
+                  release: "7.9"
                   run:     ./.github/scripts/OpenBSD/run-xserver-build.sh
 
     xserver-build-cygwin:
